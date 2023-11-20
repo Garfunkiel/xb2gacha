@@ -1,0 +1,19 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.silhouette {
+    -webkit-filter: contrast(0) hue-rotate(0deg) brightness(20%);
+    filter: contrast(0) hue-rotate(0deg) brightness(20%);
+    opacity: 1;
+}
