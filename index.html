@@ -17,7 +17,110 @@
         <script type="text/javascript" src="resources/classes/BladeCollection.js"></script>
         <script type="text/javascript" src="resources/classes/Gacha.js"></script>
         <script type="text/javascript" src="resources/classes/Controller.js"></script>
+
+        <script type="text/javascript">
+            const uiCtrl = new Controller();
+
+            $(function() {
+                $('select').formSelect({dropdownOptions: {container: document.body}});
+                $('.sidenav').sidenav({
+                    edge: 'left', // Choose the horizontal origin
+                    draggable: true // Choose whether you can drag to open on touch screens
+                });
+
+                uiCtrl.BladeCollection.displayCollection();
+            });
+        </script>
     </head>
     <body>
+        <header>
+            <nav class="black lighten-1 nav-extended">
+                <div id="navMain" class="nav-wrapper">
+                    <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
+                    <div class="brand-logo">Xenoblade 2 Gacha Simulator</div>
+                </div>
+            </nav>
+            <ul id="slide-out" class="sidenav " style="padding-left:10px; padding-right:10px;">
+                <li><div class="input-field">
+                    <select name="selCrystal" id="selCrystal">
+                        <option value="1.0" selected="selected">Common Core Crystal</option>
+                        <option value="1.5">Rare Core Crystal</option>
+                        <option value="3.0">Legendary Core Crystal</option>
+                    </select>
+                    <label for="selCrystal">Core Crystal</label>
+                </div></li>
+                <li><div class="input-field">
+                    <select name="selGroup" id="selGroup">
+                        <option value="1" selected="selected">Group 1</option>
+                        <option value="2">Group 2</option>
+                        <option value="3">Group 3</option>
+                        <option value="4">Group 4</option>
+                        <option value="5">Group 5</option>
+                    </select>
+                    <label for="selGroup">Pity Group</label>
+                </div></li>
+                <li><div class="input-field">
+                    <select name="selPityType" id="selPityType">
+                        <option value="Intended" selected="selected">Intended</option>
+                        <option value="Actual">Actual</option>
+                    </select>
+                    <label for="selPityType">Pity Group Implementation</label>
+                </div></li>
+                <li><div class="divider"></div></li>
+                <li><a class="subheader">Driver Stats</a></li>
+                <li><div class="input-field">
+                    <input id="txtLuck" type="number" name="txtLuck" min="0" max="999" value="0">
+                    <label for="txtLuck">Luck</label>
+                </div></li>
+                <li>
+                    <div class="input-field inline">
+                        <input id="txtBravery" type="number" name="txtBravery" min="0" max="10" value="0">
+                        <label for="txtBravery">Bravery</label>
+                    </div><div class="input-field inline">
+                        <input id="txtTruth" type="number" name="txtTruth" min="0" max="10" value="0">
+                        <label for="txtTruth">Truth</label>
+                    </div><div class="input-field inline">
+                        <input id="txtCompassion" type="number" name="txtTruth" min="0" max="10" value="0">
+                        <label for="txtCompassion">Compassion</label>
+                    </div><div class="input-field inline">
+                        <input id="txtJustice" type="number" name="txtJustice" min="0" max="10" value="0">
+                        <label for="txtJustice">Justice</label>
+                    </div>
+                </li>
+                <div class="input-field inline">
+                    <select name="selBoostedIdea" id="selBoostedIdea">
+                        <option value="Bravery" selected="selected">Bravery</option>
+                        <option value="Truth">Truth</option>
+                        <option value="Compassion">Compassion</option>
+                        <option value="Justice">Justice</option>
+                    </select>
+                    <label for="selBoostedIdea">Boosted Idea</label>
+                </div>
+                <div class="input-field inline">
+                    <input id="txtBoosters" type="number" name="txtBoosters" min="0" max="5" value="0">
+                    <label for="txtBoosters">Boosters</label>
+                </div>
+                <li><div class="divider"></div></li>
+                <li><a class="subheader">Continuous Rolling</a></li>
+                <div class="input-field">
+                    <input id="txtPeriod" type="number" name="txtPeriod" min="1" max="100" value="50">
+                    <label for="txtPeriod">Roll Speed</label>
+                </div>
+            </ul>
+        </header>
+        <main>
+            <div style="margin: 20px;">
+                <div class="row">
+                    <a class="btn blue darken-4 waves-effect waves-light" onclick="uiCtrl.btnRollClicked();">Roll</a>
+                    <a class="btn blue darken-4 waves-effect waves-light" onclick="uiCtrl.btnContinousRollClicked();">Start Rolling</a>
+                    <a class="btn blue darken-4 waves-effect waves-light" onclick="uiCtrl.btnStopRollingClicked();">Stop Rolling</a>
+                    <a class="btn blue darken-4 waves-effect waves-light" onclick="uiCtrl.btnResetClicked();">Reset</a>
+                    <center>
+                        <div id="divResults"></div>
+                    </center>
+                </div>
+                <div class="row" id="divCollection"></div>
+            </div>
+        </main>
     </body>
 </html>
